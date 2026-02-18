@@ -3,10 +3,26 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('ng-calculator');
+  display: string = '';
+
+  press(value: string) {
+    this.display += value;
+  }
+
+  clear() {
+    this.display = '';
+  }
+
+  calculate() {
+    try {
+      this.display = eval(this.display);
+    } catch {
+      this.display = 'Error';
+    }
+  }
 }
